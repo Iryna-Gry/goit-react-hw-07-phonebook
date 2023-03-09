@@ -10,7 +10,6 @@ export const ContactList = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilterValue);
   const { contacts, isLoading, error } = useSelector(getContactsData);
-  // const contacts = useSelector(getContactsData);
 
   useEffect(() => {
     dispatch(fetchContacts());

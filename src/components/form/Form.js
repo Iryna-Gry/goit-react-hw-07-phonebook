@@ -30,7 +30,7 @@ export const Form = () => {
     if (contacts.some(item => item.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} is already in contacts`);
       return;
-    } else if (contacts.some(item => item.number === number)) {
+    } else if (contacts.some(item => item.phone === number)) {
       alert(`${number} is already in contacts`);
       return;
     } else {
