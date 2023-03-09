@@ -1,9 +1,5 @@
 import React from 'react';
-import { Container } from './container/Container.styled';
-import { Section } from './Section/Section';
-import { ContactList } from './contactList/ContactList';
-import { Form } from './form/Form';
-import { SearchInput } from './searchInput/SearchInput';
+import { Container, Section, ContactList, Form, SearchInput } from 'components';
 
 export const App = () => {
   return (

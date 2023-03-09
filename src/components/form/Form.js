@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import css from './Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, getContactsData } from 'redux/contacts/slice';
+import { getContactsData } from 'redux/contacts/slice';
+import { addContact } from 'redux/contacts/operations';
 import { nanoid } from 'nanoid';
 
 export const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-  const contacts = useSelector(getContactsData);
+  const { contacts, isLoading, error } = useSelector(getContactsData);
+
   const handleInputChange = event => {
     const { name, value } = event.target;
     switch (name) {
@@ -32,7 +34,14 @@ export const Form = () => {
       alert(`${number} is already in contacts`);
       return;
     } else {
-      dispatch(addContact({ id: nanoid(), name, number }));
+      dispatch(
+        addContact({
+          id: nanoid(),
+          name,
+          phone: number,
+          createdAt: Date.now(),
+        })
+      );
     }
     reset();
   };
@@ -68,7 +77,8 @@ export const Form = () => {
           value={number}
         />
       </label>
-      <button type="submit" className={css.Form__Btn}>
+      {error && 'Oops something went wrong'}
+      <button type="submit" disabled={isLoading} className={css.Form__Btn}>
         Add Contact
       </button>
     </form>
